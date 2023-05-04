@@ -1,0 +1,10 @@
+Feature,Router,Link-layer Switch,Hub
+"Operates at which layer of the OSI model","Network layer","Data link layer","Physical layer"
+"Forwards data based on","IP addresses","MAC addresses","None (broadcasts to all devices)"
+"Filters data packets based on","Routing tables","MAC addresses","None"
+"Broadcasts data to all devices on the network","No","No","Yes"
+"Determines the best path for data to travel between networks","Yes","No","No"
+"Can connect LAN to WAN","Yes","No","No"
+"Efficiency","High","Higher than hub, lower than router","Low"
+"Security","High","Medium","Low"
+"Cost","High","Medium","Low"
