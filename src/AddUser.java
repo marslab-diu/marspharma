@@ -205,6 +205,8 @@ public class AddUser extends javax.swing.JFrame {
             }
         });
     }
+	
+    //checking comment
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
