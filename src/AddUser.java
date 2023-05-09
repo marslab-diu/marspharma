@@ -8,8 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Date;
 
 public class AddUser extends javax.swing.JFrame {
     public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
@@ -42,9 +44,9 @@ public class AddUser extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         txtMobileNumber = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        txtUserName = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         comboUserRole = new javax.swing.JComboBox<>();
-        txtDOB = new com.toedter.calendar.JDateChooser();
+        dateDOB = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -63,12 +65,22 @@ public class AddUser extends javax.swing.JFrame {
         btnClose.setBorder(null);
         btnClose.setContentAreaFilled(false);
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
 
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/savebtn.png"))); // NOI18N
         btnSave.setBorder(null);
         btnSave.setContentAreaFilled(false);
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         txtAddress.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -86,20 +98,20 @@ public class AddUser extends javax.swing.JFrame {
         txtPassword.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 165, 43));
 
-        txtUserName.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtUsername.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtUserNameKeyReleased(evt);
+                txtUsernameKeyReleased(evt);
             }
         });
-        getContentPane().add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 165, 43));
+        getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 165, 43));
 
         comboUserRole.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         comboUserRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Pharmacist" }));
         getContentPane().add(comboUserRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 164, 43));
 
-        txtDOB.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        getContentPane().add(txtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 164, 43));
+        dateDOB.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        getContentPane().add(dateDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 164, 43));
 
         jLabel1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel1.setText("User Role");
@@ -143,8 +155,8 @@ public class AddUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUserNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyReleased
-        String username = txtUserName.getText();
+    private void txtUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyReleased
+        String username = txtUsername.getText();
         if(!username.equals("")) {
             iconLevel.setVisible(true);
             iconLevel.setIcon(new ImageIcon("src\\icons\\yes.png"));
@@ -169,7 +181,82 @@ public class AddUser extends javax.swing.JFrame {
         else {
            iconLevel.setVisible(false);
         }
-    }//GEN-LAST:event_txtUserNameKeyReleased
+    }//GEN-LAST:event_txtUsernameKeyReleased
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String userRole = (String) comboUserRole.getSelectedItem();
+        String name = txtName.getText();
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = dateDOB.getDate(); 
+        String dob = "";
+        if(date!=null) {
+            dob = dFormat.format(dateDOB.getDate());
+        }
+        String mobileNumber = txtMobileNumber.getText();
+        String email = txtEmail.getText();
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        String address = txtAddress.getText();
+        
+        if(username.equals("")) {
+            JOptionPane.showMessageDialog(null, "Username field is required");
+        }
+        else if(checkUsername == 1) {
+            JOptionPane.showMessageDialog(null, "User already exists. Use a different username");
+        }
+        else if(name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Name field is required");
+        }
+        else if(mobileNumber.equals("")) {
+            JOptionPane.showMessageDialog(null, "Mobile Number field is required");
+        }
+        else if(!mobileNumber.matches(mobileNumberPattern)||mobileNumber.length()!= 11) {
+            JOptionPane.showMessageDialog(null, "Mobile Number field is invaild. Please use a number like 01700000000");
+        }
+        else if(email.equals("")) {
+            JOptionPane.showMessageDialog(null, "Email field is required");
+        }
+        else if(!email.matches(emailPattern)) {
+            JOptionPane.showMessageDialog(null, "Email field is invaild. Please use an email like abc@company.com");
+        }
+        else if(password.equals("")) {
+            JOptionPane.showMessageDialog(null, "Password field is required");
+        }
+        else if(dob.equals("")) {
+            JOptionPane.showMessageDialog(null, "Date of Birth field is required");
+        }
+        else if(address.equals("")) {
+            JOptionPane.showMessageDialog(null, "Address field is required");
+        }
+        else {
+            try {
+                Connection con = ConnectionProvider.getCon();
+                PreparedStatement ps = con.prepareStatement("insert into appuser (userRole,name,dob,mobileNumber,email,username,password,address) values(?,?,?,?,?,?,?,?)");
+                ps.setString(1,userRole);
+                ps.setString(2,name);
+                ps.setString(3,dob);
+                ps.setString(4,mobileNumber);
+                ps.setString(5,email);
+                ps.setString(6,username);
+                ps.setString(7,password);
+                ps.setString(8,address);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "User added successfully");
+                setVisible(false);
+                new AddUser().setVisible(true);
+                
+            }
+            catch(Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +299,7 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> comboUserRole;
+    private com.toedter.calendar.JDateChooser dateDOB;
     private javax.swing.JLabel iconLevel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -223,11 +311,10 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtAddress;
-    private com.toedter.calendar.JDateChooser txtDOB;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUserName;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
