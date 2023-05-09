@@ -41,6 +41,7 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profilebtn.png"))); // NOI18N

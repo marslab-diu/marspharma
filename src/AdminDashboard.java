@@ -39,6 +39,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profilebtn.png"))); // NOI18N
@@ -62,6 +63,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnViewUser.setBorder(null);
         btnViewUser.setContentAreaFilled(false);
         btnViewUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewUserActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnViewUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, -1, -1));
 
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logoutbtn.png"))); // NOI18N
@@ -107,6 +113,11 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateUserActionPerformed
+
+    private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
+        // TODO add your handling code here:
+        new ViewUser(username).setVisible(true);
+    }//GEN-LAST:event_btnViewUserActionPerformed
 
     /**
      * @param args the command line arguments

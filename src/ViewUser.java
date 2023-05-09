@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+import com.sun.jdi.connect.spi.Connection;
+import dao.ConnectionProvider;
+import javax.swing.JOptionPane;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Home
  */
 public class ViewUser extends javax.swing.JFrame {
+    
+    private String username = "";
+    
 
     /**
      * Creates new form ViewUser
@@ -15,7 +21,11 @@ public class ViewUser extends javax.swing.JFrame {
     public ViewUser() {
         initComponents();
     }
-
+    public ViewUser(String tempUsername) {
+        initComponents();
+        username = tempUsername;
+        setLocationRelativeTo(null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,21 +35,103 @@ public class ViewUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblViewUser = new javax.swing.JTable();
+        btnClose = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblViewUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Username", "Role", "Name", "Date of Birth", "Mobile No", "Email", "Password", "Address"
+            }
+        ));
+        tblViewUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblViewUserMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblViewUser);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 82, 838, 340));
+
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/closebtn.png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ViewUser.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)tblViewUser.getModel();
+        try {
+            java.sql.Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select *from appuser");
+            while(rs.next()){
+                model.addRow(new Object[] {rs.getString("appuser_pk"),rs.getString("username"),rs.getString("userRole"),rs.getString("name"),rs.getString("dob"),rs.getString("mobileNumber"),rs.getString("email"),rs.getString("password"),rs.getString("address")});             
+            }
+            
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void tblViewUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewUserMouseClicked
+        // TODO add your handling code here:
+        int index = tblViewUser.getSelectedRow();
+        TableModel model = tblViewUser.getModel();
+        String id = model.getValueAt(index,0).toString();
+        String usernameTable = model.getValueAt(index,1).toString();
+        if(username.equals(usernameTable)) {
+            JOptionPane.showMessageDialog(null, "You cannot delete your own account");
+        }
+        else {
+            int a = JOptionPane.showConfirmDialog(null, "Do you want to delete this user?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a==0) {
+                try {
+                    java.sql.Connection con = ConnectionProvider.getCon();
+                    PreparedStatement ps = con.prepareStatement("delete from appuser where appuser_pk=?");
+                    ps.setString(1, id);
+                    ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "User has been deleted");
+                    setVisible(false);
+                    new ViewUser(username).setVisible(true);
+                }
+                catch(Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+                }
+            }
+        }
+    }//GEN-LAST:event_tblViewUserMouseClicked
 
     /**
      * @param args the command line arguments
@@ -77,5 +169,9 @@ public class ViewUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblViewUser;
     // End of variables declaration//GEN-END:variables
 }
