@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/T:/marspharma/src/Login.java</file>
+            <file>file:/T:/marspharma/src/PharmacistDashboard.java</file>
+            <file>file:/T:/marspharma/src/AdminDashboard.java</file>
             <file>file:/T:/marspharma/src/dao/ConnectionProvider.java</file>
             <file>file:/T:/marspharma/src/AddUser.java</file>
-            <file>file:/T:/marspharma/src/dao/Tables.java</file>
+            <file>file:/T:/marspharma/src/ViewUser.java</file>
+            <file>file:/T:/marspharma/build.xml</file>
         </group>
     </open-files>
 </project-private>

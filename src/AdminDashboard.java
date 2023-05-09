@@ -112,6 +112,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
         // TODO add your handling code here:
+        new UpdateUser().setVisible(true);
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
