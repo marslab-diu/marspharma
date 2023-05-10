@@ -70,6 +70,11 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         btnViewMedicine.setBorder(null);
         btnViewMedicine.setContentAreaFilled(false);
         btnViewMedicine.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewMedicineActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnViewMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, -1, -1));
 
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logoutbtn.png"))); // NOI18N
@@ -124,6 +129,11 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Profile(username).setVisible(true);
     }//GEN-LAST:event_btnProfileActionPerformed
+
+    private void btnViewMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMedicineActionPerformed
+        // TODO add your handling code here:
+        new ViewMedicine().setVisible(true);
+    }//GEN-LAST:event_btnViewMedicineActionPerformed
 
     /**
      * @param args the command line arguments
