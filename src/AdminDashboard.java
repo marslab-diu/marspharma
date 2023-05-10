@@ -46,6 +46,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnProfile.setBorder(null);
         btnProfile.setContentAreaFilled(false);
         btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
 
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/adduserbtn.png"))); // NOI18N
@@ -119,6 +124,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ViewUser(username).setVisible(true);
     }//GEN-LAST:event_btnViewUserActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+                                          
+        // TODO add your handling code here:
+        new Profile(username).setVisible(true);
+    }//GEN-LAST:event_btnProfileActionPerformed
 
     /**
      * @param args the command line arguments

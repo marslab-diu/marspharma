@@ -94,6 +94,11 @@ public class UpdateUser extends javax.swing.JFrame {
         getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 165, 43));
 
         txtUsername.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
         txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtUsernameKeyReleased(evt);
@@ -293,6 +298,10 @@ public class UpdateUser extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     /**
      * @param args the command line arguments
