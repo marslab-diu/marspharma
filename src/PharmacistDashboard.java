@@ -48,6 +48,11 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         btnProfile.setBorder(null);
         btnProfile.setContentAreaFilled(false);
         btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
         btnAddMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addmedicine.png"))); // NOI18N
@@ -104,6 +109,7 @@ public class PharmacistDashboard extends javax.swing.JFrame {
 
     private void btnAddMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMedicineActionPerformed
         // TODO add your handling code here:
+        new AddMedicine().setVisible(true);
     }//GEN-LAST:event_btnAddMedicineActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -113,6 +119,11 @@ public class PharmacistDashboard extends javax.swing.JFrame {
             new Login().setVisible(true);
         }
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+        // TODO add your handling code here:
+        new Profile(username).setVisible(true);
+    }//GEN-LAST:event_btnProfileActionPerformed
 
     /**
      * @param args the command line arguments

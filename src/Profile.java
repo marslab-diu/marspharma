@@ -114,12 +114,12 @@ public class Profile extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel1.setText("Welcome,");
+        jLabel1.setText("Welcome,  ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
 
         lblUsername.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         lblUsername.setText("Profile");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
+        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 350, 40));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profilebg.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

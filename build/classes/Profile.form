@@ -178,7 +178,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Poppins Medium" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Welcome,"/>
+        <Property name="text" type="java.lang.String" value="Welcome,  "/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -195,7 +195,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="440" y="40" width="-1" height="-1"/>
+          <AbsoluteConstraints x="450" y="30" width="350" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
