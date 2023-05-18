@@ -92,12 +92,22 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         btnUpdateMedicine.setBorder(null);
         btnUpdateMedicine.setContentAreaFilled(false);
         btnUpdateMedicine.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateMedicineActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnUpdateMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
 
         btnSellMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sellmedicinebtn.png"))); // NOI18N
         btnSellMedicine.setBorder(null);
         btnSellMedicine.setContentAreaFilled(false);
         btnSellMedicine.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSellMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSellMedicineActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSellMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
 
         btnViewBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/viewbillbtn.png"))); // NOI18N
@@ -134,6 +144,16 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ViewMedicine().setVisible(true);
     }//GEN-LAST:event_btnViewMedicineActionPerformed
+
+    private void btnUpdateMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMedicineActionPerformed
+        // TODO add your handling code here:
+        new UpdateMedicine().setVisible(true);
+    }//GEN-LAST:event_btnUpdateMedicineActionPerformed
+
+    private void btnSellMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellMedicineActionPerformed
+        // TODO add your handling code here:
+         new SellMedicine(username).setVisible(true);
+    }//GEN-LAST:event_btnSellMedicineActionPerformed
 
     /**
      * @param args the command line arguments
