@@ -519,7 +519,7 @@ public class SellMedicine extends javax.swing.JFrame {
                     try {
                         java.sql.Connection con = ConnectionProvider.getCon();
                         Statement st = con.createStatement();
-                        java.sql.ResultSet rs = st.executeQuery("update medicine set quantity = quantity-" + Integer.parseInt(dtm.getValueAt(i, 4).toString()) + " where uniqueId=" + Integer.parseInt(dtm.getValueAt(i, 0).toString()));
+                        java.sql.ResultSet rs = st.executeUpdate("update medicine set quantity = quantity-" + Integer.parseInt(dtm.getValueAt(i, 4).toString()) + " where uniqueId=" + Integer.parseInt(dtm.getValueAt(i, 0).toString()));
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e);
                     }
