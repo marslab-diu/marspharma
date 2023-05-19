@@ -581,7 +581,8 @@ public class SellMedicine extends javax.swing.JFrame {
                 doc.add(tPaid);
                 Paragraph vat = new Paragraph("VAT(15%): " + finalTotalPrice * 0.15);
                 doc.add(vat);
-                Paragraph finalPaid = new Paragraph("Total Paid: " + finalTotalPrice + finalTotalPrice * 0.15);
+                double totalPaidPrice = (finalTotalPrice + finalTotalPrice * 0.15);
+                Paragraph finalPaid = new Paragraph("Total Paid: " + totalPaidPrice);
                 doc.add(finalPaid);
                 doc.add(starLine);
                 Paragraph thanksMsg = new Paragraph("                                           Thanks for your purchase. Get Well Soon!");
