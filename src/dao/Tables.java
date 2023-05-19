@@ -1,14 +1,13 @@
-package dao;
 
+/**
+ * @author Minhazul Abedin
+ *         ID: 221-15-4919
+ */
+package dao;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.Statement;
 
-/**
- *
- * @author Minhazul Abedin
- *         ID: 221-15-4919
- */
 public class Tables {
     public static void main(String[] args) {
         try {

@@ -1,14 +1,13 @@
-package common;
 
+/**
+ * @author Minhazul Abedin
+ *         ID: 221-15-4919
+ */
+package common;
 import dao.PharmacyUtils;
 import java.io.File;
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author Home
- */
 public class OpenPdf {
 
     public static void openById(String id) {
