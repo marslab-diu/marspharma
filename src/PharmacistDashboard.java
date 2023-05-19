@@ -114,6 +114,11 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         btnViewBill.setBorder(null);
         btnViewBill.setContentAreaFilled(false);
         btnViewBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnViewBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBillActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnViewBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 370, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/PharmacistDashboardbg.png"))); // NOI18N
@@ -154,6 +159,11 @@ public class PharmacistDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
          new SellMedicine(username).setVisible(true);
     }//GEN-LAST:event_btnSellMedicineActionPerformed
+
+    private void btnViewBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBillActionPerformed
+        // TODO add your handling code here:
+        new ViewBill().setVisible(true);
+    }//GEN-LAST:event_btnViewBillActionPerformed
 
     /**
      * @param args the command line arguments
