@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 03:38 PM
+-- Generation Time: May 25, 2023 at 03:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -45,8 +45,7 @@ CREATE TABLE `appuser` (
 
 INSERT INTO `appuser` (`appuser_pk`, `userRole`, `name`, `dob`, `mobileNumber`, `email`, `username`, `password`, `address`) VALUES
 (1, 'Admin', 'Admin', '28-11-2001', '01800000000', 'admin@gmail.com', 'admin', 'admin', 'Mirpur, Dhaka'),
-(2, 'Pharmacist', 'Pharmacist', '28-11-2001', '01700000000', 'pharma@gmail.com', 'pharma', 'pharma', 'Mirpur, Dhaka'),
-(7, 'Pharmacist', 'Koli Akter', '09-06-2002', '01982928202', 'koliakter@gmail.com', 'koli', 'koli', 'Malibagh, Dhaka');
+(2, 'Pharmacist', 'Pharmacist', '28-11-2001', '01700000000', 'pharma@gmail.com', 'pharma', 'pharma', 'Mirpur, Dhaka');
 
 -- --------------------------------------------------------
 
