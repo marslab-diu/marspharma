@@ -7,11 +7,11 @@ import dao.ConnectionProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.*;
-import java.text.SimpleDateFormat;
+import java.sql.Statement;
+import java.text.SimpleDateFormat; //To use the date functionalities
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import java.util.Date;
+import java.util.Date; //To use the date functionalities
 
 public class AddUser extends javax.swing.JFrame {
 
@@ -151,20 +151,20 @@ public class AddUser extends javax.swing.JFrame {
 
     private void txtUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyReleased
         String username = txtUsername.getText();
-        if (!username.equals("")) {
-            iconLevel.setVisible(true);
-            iconLevel.setIcon(new ImageIcon("src\\icons\\yes.png"));
-            iconLevel.setText("");
-            checkUsername = 0;
+        if (!username.equals("")) { //if there is values in the username field
+            iconLevel.setVisible(true); //show the iconLevel
+            iconLevel.setIcon(new ImageIcon("src\\icons\\yes.png")); //set the iconLevel to YES if the username is not yet exists
+            iconLevel.setText(""); //remove the texts from the iconlevel
+            checkUsername = 0; //username is okay
 
             try {
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("select *from appuser where username = '" + username + "'");
                 while (rs.next()) {
-                    checkUsername = 1;
-                    iconLevel.setIcon(new ImageIcon("src\\icons\\no.png"));
-                    iconLevel.setText("");
+                    checkUsername = 1; //username is not okay, already exists
+                    iconLevel.setIcon(new ImageIcon("src\\icons\\no.png")); //set iconLevel to NO as username already exists
+                    iconLevel.setText(""); //remove the texts from the iconlevel
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -174,23 +174,22 @@ public class AddUser extends javax.swing.JFrame {
             iconLevel.setVisible(false);
         }
     }//GEN-LAST:event_txtUsernameKeyReleased
-
+    //...Coding the functionalities of the Save button...//
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-        String userRole = (String) comboUserRole.getSelectedItem();
-        String name = txtName.getText();
-        SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = dateDOB.getDate();
-        String dob = "";
-        if (date != null) {
-            dob = dFormat.format(dateDOB.getDate());
+        String userRole = (String) comboUserRole.getSelectedItem(); //Get the userRole from the combo option
+        String name = txtName.getText(); //Get the name
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy"); //Creating a object of SimpleDateTime Format, so specifiy a format
+        Date date = dateDOB.getDate(); //getting the date
+        String dob = ""; //creating a new dob named string and setting its value to null so that new value can be inserted
+        if (date != null) { //if there is some value exists in the date field
+            dob = dFormat.format(dateDOB.getDate()); //set to the dob string in the specified format
         }
-        String mobileNumber = txtMobileNumber.getText();
-        String email = txtEmail.getText();
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
-        String address = txtAddress.getText();
-
+        String mobileNumber = txtMobileNumber.getText(); //get the mobile number
+        String email = txtEmail.getText(); //get the email id
+        String username = txtUsername.getText(); //get the username
+        String password = txtPassword.getText(); //get the password
+        String address = txtAddress.getText(); //get the address
+        //...Checking for valid values, refer to Profile class for clearifications of the lines of codes...
         if (username.equals("")) {
             JOptionPane.showMessageDialog(null, "Username field is required");
         } else if (checkUsername == 1) {
@@ -231,6 +230,7 @@ public class AddUser extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
+            //...//
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

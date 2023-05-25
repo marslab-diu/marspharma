@@ -3,16 +3,18 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
+//...Please refer to the UpdateUser class for the clearificaions of the lines of codes...//
 import dao.ConnectionProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.*;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class UpdateMedicine extends javax.swing.JFrame {
 
     public String numberPattern = "^[0-9]*$";
+    public String numberPatternExtended = "^[0-9]+[.]+[0-9]*$"; //for floating values of price
     public int checkMedicineExist = 0;
 
     public UpdateMedicine() {
@@ -187,7 +189,7 @@ public class UpdateMedicine extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Company field is required");
         } else if (price.equals("")) {
             JOptionPane.showMessageDialog(null, "Price Per Unit field is required");
-        } else if (!price.matches(numberPattern)) {
+        } else if (!price.matches(numberPattern) && !price.matches(numberPatternExtended)) {
             JOptionPane.showMessageDialog(null, "Price Per Unit field is invaild. Please use a number");
         } else if (quantity.equals("")) {
             JOptionPane.showMessageDialog(null, "Quantity field is required");

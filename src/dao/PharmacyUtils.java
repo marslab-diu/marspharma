@@ -6,6 +6,6 @@
 package dao;
 
 public class PharmacyUtils {
-    public static String billPath = "C:\\";
+    public static String billPath = "D:\\";
     
 }

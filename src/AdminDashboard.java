@@ -3,21 +3,23 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
-import javax.swing.JOptionPane;
+//.....Importing Required Classes.....//
+import javax.swing.JOptionPane; //To open an option panel
 
+//.....Creation of the AdminDashboard class.....//
 public class AdminDashboard extends javax.swing.JFrame {
 
-    private String username = "";
+    private String username = ""; //creating a private string to place the username that has been provided while login
 
     public AdminDashboard() {
         initComponents();
     }
 
-    public AdminDashboard(String tempUsername) {
+    public AdminDashboard(String tempUsername) { //another constructor to provide the Username while redirecting from the Login page
         initComponents();
-        username = tempUsername;
-        System.out.println(username);
-        setLocationRelativeTo(null);
+        username = tempUsername; //Setting the tempUsername to the created private username string
+        System.out.println(username); //Priting the username in the console for a confirmation to the system admin
+        setLocationRelativeTo(null); //Setting the window to the middle with respect to the desktop aspect ratio
     }
 
     @SuppressWarnings("unchecked")
@@ -95,34 +97,32 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //.....Coding the functionalities of the Logout button.....//
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         int a = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "MarsPharma", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            setVisible(false);
-            new Login().setVisible(true);
+        if (a == 0) { //0 means Yes button is pressed, 1 means No button is pressed
+            setVisible(false); //Closign the Admin Dashboard window
+            new Login().setVisible(true); //Opening the Login window
         }
     }//GEN-LAST:event_btnLogOutActionPerformed
-
+    //.....Coding the functionalities of the Feature buttons.....//
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        new AddUser().setVisible(true);
+        new AddUser().setVisible(true); //if pressed, addUser window is shown
     }//GEN-LAST:event_btnAddUserActionPerformed
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
-
-        new UpdateUser().setVisible(true);
+        new UpdateUser().setVisible(true);  //if pressed, updateUser window is shown
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
-
-        new ViewUser(username).setVisible(true);
+        new ViewUser(username).setVisible(true);  //if pressed, viewUser window is shown
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-
-        new Profile(username).setVisible(true);
+        new Profile(username).setVisible(true);  //if pressed, Profile window is shown
     }//GEN-LAST:event_btnProfileActionPerformed
 
+    //.....The main method of the AdminDashboard Class.....
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

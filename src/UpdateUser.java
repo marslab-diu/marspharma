@@ -3,11 +3,12 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
+//...Please refer to the AddUser class for the clearificaions of the lines of codes...//
 import dao.ConnectionProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.*;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.util.Date;
@@ -44,7 +45,6 @@ public class UpdateUser extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnSave1 = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
@@ -134,17 +134,6 @@ public class UpdateUser extends javax.swing.JFrame {
         jLabel8.setText("Address");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, -1, -1));
 
-        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/savebtn.png"))); // NOI18N
-        btnSave1.setBorder(null);
-        btnSave1.setContentAreaFilled(false);
-        btnSave1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSave1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSave1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
-
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searchbtn.png"))); // NOI18N
         btnSearch.setBorder(null);
         btnSearch.setContentAreaFilled(false);
@@ -223,9 +212,6 @@ public class UpdateUser extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
-    }//GEN-LAST:event_btnSave1ActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         int checkUserExist = 0;
         String username = txtUsername.getText();
@@ -253,14 +239,14 @@ public class UpdateUser extends javax.swing.JFrame {
                         }
                     }
                     if (rs.getString("userRole").equals("Admin")) {
-                        comboUserRole.removeAllItems();
-                        comboUserRole.addItem("Admin");
-                        comboUserRole.addItem("Pharmacist");
+                        comboUserRole.removeAllItems(); //Remove all items to clear the cell
+                        comboUserRole.addItem("Admin"); //Put admin on top
+                        comboUserRole.addItem("Pharmacist");//Add pharmacist on the next
 
                     } else {
                         comboUserRole.removeAllItems();
-                        comboUserRole.addItem("Pharmacist");
-                        comboUserRole.addItem("Admin");
+                        comboUserRole.addItem("Pharmacist"); //Put pharmacist on top
+                        comboUserRole.addItem("Admin"); //Add admin on the next
                     }
                 }
             } catch (Exception e) {
@@ -302,7 +288,6 @@ public class UpdateUser extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new UpdateUser().setVisible(true);
@@ -314,7 +299,6 @@ public class UpdateUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnSave1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> comboUserRole;
     private com.toedter.calendar.JDateChooser dateDOB;

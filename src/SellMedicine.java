@@ -3,26 +3,29 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.PdfPTable;
-import common.OpenPdf;
-import javax.swing.table.DefaultTableModel;
-import dao.ConnectionProvider;
-import dao.PharmacyUtils;
-import java.io.FileOutputStream;
-import java.sql.PreparedStatement;
-import java.sql.*;
+//...Importing the required classes...//
+import com.itextpdf.text.Paragraph; //To create a paragraph in the invoice pdf
+import com.itextpdf.text.pdf.PdfWriter; //To create a pdf
+import com.itextpdf.text.pdf.PdfPTable; //To create a table in the invoice pdf
+import common.OpenPdf; //To open a pdf
+import javax.swing.table.DefaultTableModel; //To create a table
+import dao.ConnectionProvider; //To connect with the database
+import dao.PharmacyUtils; //To save the pdf in the diskdrive
+import java.io.FileOutputStream; //To open a file
+import java.sql.PreparedStatement; //To perform some special queries on the SQL
+import java.sql.*; 
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.util.Date;
 import javax.swing.table.TableModel;
 import java.util.Calendar;
 
+//...Creation of the SellMedicine Class...//
 public class SellMedicine extends javax.swing.JFrame {
 
-    public String numberPattern = "^[0-9]*$";
-    private int finalTotalPrice = 0;
+    public String numberPattern = "^[0-9]*$"; //Setting number pattern to check if the user entered a numbered value or not
+    public String numberPatternExtended = "^[0-9]+[.]+[0-9]*$"; //for floating values of price
+    private float finalTotalPrice = 0; //Setting the final total price value to 0
     private String billId = "";
     private String username = "";
 
@@ -423,7 +426,7 @@ public class SellMedicine extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Number of Unit field is invalid");
 
             }
-            int totalPrice = Integer.parseInt(noOfUnits) * Integer.parseInt(price);
+            float totalPrice = Integer.parseInt(noOfUnits) * Float.parseFloat(price);
             txtTotalPrice.setText(String.valueOf(totalPrice));
         } else {
             txtTotalPrice.setText("");
@@ -468,7 +471,7 @@ public class SellMedicine extends javax.swing.JFrame {
                 }
                 if (checkMedicineAlreadyExistsInCart == 0) {
                     dtm.addRow(new Object[]{uniqueId, brandName, company, pricePerUnit, noOfUnits, totalPrice, finalTotalPrice});
-                    finalTotalPrice = finalTotalPrice + Integer.parseInt(totalPrice);
+                    finalTotalPrice = finalTotalPrice + Float.parseFloat(totalPrice);
                     lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
                     JOptionPane.showMessageDialog(null, "Added to cart");
                 }
@@ -486,7 +489,7 @@ public class SellMedicine extends javax.swing.JFrame {
         if (a == 0) {
             TableModel model = tblCart.getModel();
             String total = model.getValueAt(index, 5).toString();
-            finalTotalPrice = finalTotalPrice - Integer.parseInt(total);
+            finalTotalPrice = finalTotalPrice - Float.parseFloat(total);
             lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
             ((DefaultTableModel) tblCart.getModel()).removeRow(index);
         }
@@ -514,7 +517,7 @@ public class SellMedicine extends javax.swing.JFrame {
                 PreparedStatement ps = con.prepareStatement("insert into bill(billId, billDate, totalPaid, generatedBy) values(?,?,?,?)");
                 ps.setString(1, billId);
                 ps.setString(2, dFormat.format(cal.getTime()));
-                ps.setInt(3, finalTotalPrice);
+                ps.setFloat(3, finalTotalPrice);
                 ps.setString(4, username);
                 ps.executeUpdate();
 

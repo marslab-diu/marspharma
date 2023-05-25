@@ -3,19 +3,22 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
-import dao.ConnectionProvider;
-import java.awt.Desktop;
-import java.net.URL;
-import javax.swing.JOptionPane;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
 
+//.....Importing Required Classes.....//
+import dao.ConnectionProvider; //To connect with database
+import java.awt.Desktop; //To assign button opening an URL
+import java.net.URL; //To assign button opening an URL
+import javax.swing.JOptionPane; //To open an option panel
+import java.sql.Connection; //To connect database with SQL
+import java.sql.Statement; //To push SQL command using program 
+import java.sql.ResultSet; // To get a database result set according to need
+
+//.....Creation of the Login class.....//
 public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); //Setting the window to the middle with respect to the desktop aspect ratio
     }
 
     @SuppressWarnings("unchecked")
@@ -47,11 +50,6 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, -1, -1));
 
         txtUsername.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 408, 60));
 
         txtPassword.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -116,61 +114,60 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-
-    }//GEN-LAST:event_txtUsernameActionPerformed
-
+    //.....Coding the functionalities of the Login button.....//
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        int temp = 0;
+        int ifUserExists = 0; //To check if the user exists or not. 0 means user not exists, 1 means the opposite.
         try {
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select *from appuser where username='" + username + "' and password='" + password + "'");
-            while (rs.next()) {
-                temp = 1;
-                if (rs.getString("userRole").equals("Admin")) {
-                    setVisible(false);
-                    new AdminDashboard(username).setVisible(true);
-                } else {
-                    setVisible(false);
-                    new PharmacistDashboard(username).setVisible(true);
+            Connection con = ConnectionProvider.getCon(); //Calling the getCon() method from the ConnectionProvider class to create a connection object
+            Statement st = con.createStatement(); //Creating a statement 
+            ResultSet rs = st.executeQuery("select *from appuser where username='" + username + "' and password='" + password + "'"); //SQL Query given to resultSet
+            while (rs.next()) { //Keep browsing the database until the provided username is found and password is matched
+                ifUserExists = 1; //When the while condition returns true, setting that the user has found
+                if (rs.getString("userRole").equals("Admin")) { //if the userRole is admin...
+                    setVisible(false); //...then the Login window is closed...
+                    new AdminDashboard(username).setVisible(true); //...and the AdminDashboard window is opened
+                } else { //if the userRole is not admin, i.e. pharmacist...
+                    setVisible(false);//...login window is closed...
+                    new PharmacistDashboard(username).setVisible(true);//...PharmacistDashboard is opened
                 }
             }
-            if (temp == 0) {
-                JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+            if (ifUserExists == 0) { //in case username and/or password does not matches with the given criteria...
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password"); //...giving an error notification
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
+    //.....Coding the functionalities of the Exit button.....//
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         int a = JOptionPane.showConfirmDialog(null, "Do you want to exit this application?", "MarsPharma", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            System.exit(0);
+        if (a == 0) { //0 means Yes button is pressed, 1 means No button is pressed
+            System.exit(0); //Killing all the processes of the program
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
+    //.....Coding the functionalities of the Help button.....//
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
 
         try {
-            Desktop.getDesktop().browse(new URL("https://sites.google.com/diu.edu.bd/mars-lab/marspharma/how-to-use").toURI());
+            Desktop.getDesktop().browse(new URL("https://sites.google.com/diu.edu.bd/mars-lab/marspharma/how-to-use").toURI()); //Creating a new URL object and nevigating to that URL of Help webpage
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnHelpActionPerformed
-
+    //.....Coding the functionalities of the About button.....//
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
 
         try {
-            Desktop.getDesktop().browse(new URL("https://sites.google.com/diu.edu.bd/mars-lab/marspharma").toURI());
+            Desktop.getDesktop().browse(new URL("https://sites.google.com/diu.edu.bd/mars-lab/marspharma").toURI()); //Creating a new URL object and nevigating to that URL of About webpage
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAboutActionPerformed
-
+    
+    //.....The main method of the Login Class.....//
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

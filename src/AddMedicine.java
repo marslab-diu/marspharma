@@ -3,6 +3,8 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
+
+//...Please refer to the AddUser class for the clearificaions of the lines of codes...//
 import dao.ConnectionProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
 public class AddMedicine extends javax.swing.JFrame {
 
     public String numberPattern = "^[0-9]*$";
+    public String numberPatternExtended = "^[0-9]+[.]+[0-9]*$"; //for floating values of price
     public int checkUniqueId = 0;
 
     public AddMedicine() {
@@ -183,7 +186,7 @@ public class AddMedicine extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Quantity field is invaild. Please use a number.");
         } else if (price.equals("")) {
             JOptionPane.showMessageDialog(null, "Price Per Unit field is required");
-        } else if (!price.matches(numberPattern)) {
+        } else if (!price.matches(numberPattern) && !price.matches(numberPatternExtended)) {
             JOptionPane.showMessageDialog(null, "rice Per Unit field is invaild. Please use a number.");
         } else {
             try {

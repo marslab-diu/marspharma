@@ -3,29 +3,31 @@
  * @author Minhazul Abedin
  *         ID: 221-15-4919
  */
-import dao.ConnectionProvider;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.*;
-import javax.swing.JOptionPane;
+//.....Importing Required Classes.....//
+import dao.ConnectionProvider; //To connect with database
+import java.sql.Connection;  //To connect database with SQL
+import java.sql.PreparedStatement;  //To perform a special type of query to SQL
+import java.sql.ResultSet; // To get a database result set according to need
+import java.sql.Statement; //To push SQL command using program 
+import javax.swing.JOptionPane; //To open an option panel
 
+//.....Creation of the Profile class.....//
 public class Profile extends javax.swing.JFrame {
 
-    public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
-    public String mobileNumberPattern = "^[0-9]*$";
-    private String username = "";
+    public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$"; //Setting an email pattern to check is user entered email is in correct format
+    public String mobileNumberPattern = "^[0-9]*$"; //Setting an email pattern to check is user entered Mobile number is in correct format
+    private String username = ""; //creating a private string to place the username that has been provided while login
 
     public Profile() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); //...Find in AdminDashboard class.../
 
     }
 
-    public Profile(String tempUsername) {
-        initComponents();
-        username = tempUsername;
-        setLocationRelativeTo(null);
+    public Profile(String tempUsername) { //...Find in AdminDashboard class.../
+        initComponents();  
+        username = tempUsername; //...Find in AdminDashboard class.../
+        setLocationRelativeTo(null); //...Find in AdminDashboard class.../
     }
 
     @SuppressWarnings("unchecked")
@@ -118,36 +120,36 @@ public class Profile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //.....Coding the functionalities of the Save button.....//
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-        String name = txtName.getText();
-        String mobileNumber = txtMobileNumber.getText();
-        String email = txtEmail.getText();
-        String address = txtAddress.getText();
-        if (name.equals("")) {
-            JOptionPane.showMessageDialog(null, "Name field is required");
-        } else if (mobileNumber.equals("")) {
+        
+        String name = txtName.getText(); //setting the nameField item to the name string
+        String mobileNumber = txtMobileNumber.getText(); //setting the mobileNumber item to the mobileNumber string
+        String email = txtEmail.getText(); //setting the email item to the email string
+        String address = txtAddress.getText(); //setting the address item to the address string
+        if (name.equals("")) { //Checking if name field is empty
+            JOptionPane.showMessageDialog(null, "Name field is required"); //if empty, then error notification
+        } else if (mobileNumber.equals("")) { //Checking if mobileNumber field is empty
             JOptionPane.showMessageDialog(null, "Mobile Number field is required");
-        } else if (!mobileNumber.matches(mobileNumberPattern) || mobileNumber.length() != 11) {
+        } else if (!mobileNumber.matches(mobileNumberPattern) || mobileNumber.length() != 11) { //Checking if mobileNumber field has the valid values
             JOptionPane.showMessageDialog(null, "Mobile Number field is invaild. Please use a number like 01700000000");
-        } else if (email.equals("")) {
+        } else if (email.equals("")) { //Checking if email field is empty
             JOptionPane.showMessageDialog(null, "Email field is required");
-        } else if (!email.matches(emailPattern)) {
+        } else if (!email.matches(emailPattern)) { //Checking if email field has the valid values
             JOptionPane.showMessageDialog(null, "Email field is invaild. Please use an email like abc@company.com");
-        } else if (address.equals("")) {
+        } else if (address.equals("")) { //Checking if address field is empty
             JOptionPane.showMessageDialog(null, "Address field is required");
         } else {
             try {
-                Connection con = ConnectionProvider.getCon();
+                Connection con = ConnectionProvider.getCon(); //...Find in Login class...//
                 PreparedStatement ps = con.prepareStatement("update appuser set name=?,mobileNumber=?,email=?,address=? where username=?");
                 ps.setString(1, name);
                 ps.setString(2, mobileNumber);
                 ps.setString(3, email);
                 ps.setString(4, address);
                 ps.setString(5, username);
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Profile updated successfully");
+                ps.executeUpdate(); //...Find in Login class...//
+                JOptionPane.showMessageDialog(null, "Profile updated successfully"); 
                 setVisible(false);
                 new Profile(username).setVisible(true);
 
@@ -157,14 +159,13 @@ public class Profile extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    //.....Coding the functionalities of the Close button.....//
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-
-        setVisible(false);
+    setVisible(false); //Window is closed
     }//GEN-LAST:event_btnCloseActionPerformed
-
+    //.....Coding the functionalities to do itself when the window is opened.....//
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-
+        //...Find in Login class...
         try {
             java.sql.Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
@@ -176,12 +177,13 @@ public class Profile extends javax.swing.JFrame {
                 txtAddress.setText(rs.getString("address"));
                 lblUsername.setText(rs.getString("username"));
             }
+            //....//
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_formComponentShown
-
+    //.....The main method of the Profile Class.....//
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
