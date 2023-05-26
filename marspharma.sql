@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 03:46 PM
+-- Generation Time: May 26, 2023 at 12:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,7 +57,7 @@ CREATE TABLE `bill` (
   `bill_pk` int(11) NOT NULL,
   `billId` varchar(200) DEFAULT NULL,
   `billDate` varchar(50) DEFAULT NULL,
-  `totalPaid` bigint(20) DEFAULT NULL,
+  `totalPaid` float DEFAULT NULL,
   `generatedBy` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -72,7 +72,12 @@ INSERT INTO `bill` (`bill_pk`, `billId`, `billDate`, `totalPaid`, `generatedBy`)
 (28, 'MPBL775852368764000', '19-05-2023', 300, 'pharma'),
 (29, 'MPBL781600308691200', '19-05-2023', 6, 'pharma'),
 (30, 'MPBL269580632124500', '24-05-2023', 360, 'koli'),
-(31, 'MPBL345070646553200', '25-05-2023', 33, '');
+(31, 'MPBL345070646553200', '25-05-2023', 33, ''),
+(32, 'MPBL347432758361400', '25-05-2023', 27, 'pharma'),
+(33, 'MPBL348346054555300', '25-05-2023', 18, 'pharma'),
+(34, 'MPBL348540941561400', '25-05-2023', 757, 'pharma'),
+(35, 'MPBL348542207846100', '25-05-2023', 757, 'pharma'),
+(36, 'MPBL420430629142700', '26-05-2023', 575, 'pharma');
 
 -- --------------------------------------------------------
 
@@ -96,15 +101,15 @@ CREATE TABLE `medicine` (
 
 INSERT INTO `medicine` (`medicine_pk`, `uniqueId`, `brandName`, `genName`, `company`, `quantity`, `price`) VALUES
 (1, '001', 'Napa (Syrup)', 'Paracetamol', 'Beximco Pharmaceuticals Ltd.', 96, 30),
-(2, '002', 'Alatrol ', 'Cetirizine Hydrochloride', 'Square Pharmaceuticals Ltd.', 439, 3),
-(3, '003', 'Flexi', 'Aceclofenac', 'Square Pharmaceuticals Ltd.', 424, 5),
-(4, '004', 'Ecosprin', 'Aspirin', 'ACME Laboratories Ltd.', 106, 1),
-(5, '005', 'Carvista', 'Carvedilol', 'Incepta Pharmaceuticals Ltd.', 302, 5.5),
+(2, '002', 'Alatrol ', 'Cetirizine Hydrochloride', 'Square Pharmaceuticals Ltd.', 434, 3),
+(3, '003', 'Flexi', 'Aceclofenac', 'Square Pharmaceuticals Ltd.', 348, 5),
+(4, '004', 'Ecosprin', 'Aspirin', 'ACME Laboratories Ltd.', 94, 1),
+(5, '005', 'Carvista', 'Carvedilol', 'Incepta Pharmaceuticals Ltd.', 300, 5.5),
 (6, '006', 'Tyclav', 'Amoxicillin+Clavulanic Acid', 'Beximco Pharmaceutical Ltd.', 344, 32.5),
-(7, '007', 'Pantonix', 'Pantoprazole Sodium Sqsquihydrate', 'Incepta Pharmaceuticals Ltd.', 420, 7),
-(8, '008', 'Stafen', 'Ketotifen Fumarate', 'Aristopharma Ltd.', 148, 3),
+(7, '007', 'Pantonix', 'Pantoprazole Sodium Sqsquihydrate', 'Incepta Pharmaceuticals Ltd.', 417, 7),
+(8, '008', 'Stafen', 'Ketotifen Fumarate', 'Aristopharma Ltd.', 83, 3),
 (9, '009', 'Provair', 'Montelkast Sodium', 'UniMed UniHealth Pharmaceuticals Ltd.', 330, 18),
-(10, '010', 'Sulprex (Inhaler)', 'Salbutamol+Ipratropium', 'Square Pharmaceutical Ltd.', 17, 250),
+(10, '010', 'Sulprex (Inhaler)', 'Salbutamol+Ipratropium', 'Square Pharmaceutical Ltd.', 11, 250),
 (11, '011', 'Ticamet (Inhaler)', 'Salmeterol+Fluticasone Propionate', 'Square Pharmaceutical Ltd.', 8, 800);
 
 --
@@ -143,7 +148,7 @@ ALTER TABLE `appuser`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `bill_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `bill_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `medicine`

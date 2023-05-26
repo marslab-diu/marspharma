@@ -30,6 +30,7 @@ public class AddUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         btnClose = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtAddress = new javax.swing.JTextField();
@@ -278,6 +279,7 @@ public class AddUser extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboUserRole;
     private com.toedter.calendar.JDateChooser dateDOB;
     private javax.swing.JLabel iconLevel;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
